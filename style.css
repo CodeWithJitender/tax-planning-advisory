@@ -24,9 +24,9 @@
     box-sizing: border-box;
 }
 
+
 body {
     overflow-x: hidden;
-    width: 100%;
 }
 
 body {
@@ -34,6 +34,10 @@ body {
     color: var(--text-dark);
     line-height: 1.6;
     font-size: 16px;
+}
+
+section {
+    overflow: hidden;
 }
 
 img {
@@ -179,6 +183,7 @@ h6 {
     cursor: pointer;
     border: none;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -297,7 +302,6 @@ h6 {
     position: relative;
     padding: 180px 0 120px;
     color: #fff;
-    overflow: hidden;
     background: #333 url('image/hero-bg.jpg') no-repeat center center / cover;
 }
 
@@ -534,9 +538,17 @@ h6 {
 }
 
 /* Section Backgrounds */
-.benefits { background-color: #ffffff; }
-.process-section { background-color: #f8f9fa; }
-.choose-us-section { background-color: #ffffff; }
+.benefits {
+    background-color: #ffffff;
+}
+
+.process-section {
+    background-color: #f8f9fa;
+}
+
+.choose-us-section {
+    background-color: #ffffff;
+}
 
 /* Process Section */
 .timeline-container {
@@ -569,7 +581,7 @@ h6 {
 }
 
 .timeline-item:last-child::before {
-    bottom: -40px;
+    bottom: 50%;
 }
 
 .timeline-number {
@@ -1429,7 +1441,7 @@ h6 {
 
 @media (max-width: 768px) {
     .container {
-        padding: 0 30px;
+        padding: 0 20px;
     }
 
     .section {
@@ -1638,7 +1650,7 @@ h6 {
     border-radius: 0 0 50px 50px;
     position: relative;
     z-index: 2;
-    box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.05);
 }
 
 .faq-container-new {
@@ -1655,6 +1667,7 @@ h6 {
     .process-layout {
         grid-template-columns: 1fr;
     }
+
     .choose-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1730,7 +1743,7 @@ h6 {
 
 .cta-banner-new {
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap: 60px;
 }
 
@@ -1846,6 +1859,7 @@ h6 {
     .choose-grid {
         grid-template-columns: 1fr;
     }
+
     .new-cta-style {
         padding: 100px 0 50px;
     }

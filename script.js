@@ -34,44 +34,50 @@ document.addEventListener('DOMContentLoaded', () => {
         activeAccordion.style.maxHeight = activeAccordion.scrollHeight + 40 + 'px';
     }
 
-    // EmailJS Form Submission
-    const contactForm = document.getElementById('contact-form');
+    // EmailJS Form Submission for multiple forms
+    const forms = [
+        document.getElementById('contact-form'),
+        document.getElementById('bottom-contact-form')
+    ];
+    
     const popup = document.getElementById('thank-you-popup');
 
-    if (contactForm) {
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+    forms.forEach(form => {
+        if (form) {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
 
-            const btn = contactForm.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
 
-            btn.innerText = 'Sending...';
-            btn.style.opacity = '0.8';
-            btn.disabled = true;
+                btn.innerText = 'Sending...';
+                btn.style.opacity = '0.8';
+                btn.disabled = true;
 
-            // service_id, template_id, form_element
-            emailjs.sendForm('service_5ukbpwr', 'template_glg1bna', contactForm)
-                .then(() => {
-                    // Show Popup
-                    popup.classList.add('active');
-                    contactForm.reset();
-                    btn.innerText = originalText;
-                    btn.style.opacity = '1';
-                    btn.disabled = false;
+                // service_id, template_id, form_element
+                emailjs.sendForm('service_5ukbpwr', 'template_glg1bna', form)
+                    .then(() => {
+                        // Show Popup
+                        popup.classList.add('active');
+                        form.reset();
+                        btn.innerText = originalText;
+                        btn.style.opacity = '1';
+                        btn.disabled = false;
 
-                    // Hide popup after 3 seconds
-                    setTimeout(() => {
-                        popup.classList.remove('active');
-                    }, 3000);
-                }, (error) => {
-                    console.log('FAILED...', error);
-                    alert("Failed to send message. Please try again.");
-                    btn.innerText = originalText;
-                    btn.style.opacity = '1';
-                    btn.disabled = false;
-                });
-        });
-    }
+                        // Hide popup after 3 seconds
+                        setTimeout(() => {
+                            popup.classList.remove('active');
+                        }, 3000);
+                    }, (error) => {
+                        console.error('FAILED...', error);
+                        alert('Something went wrong. Please try again later.');
+                        btn.innerText = originalText;
+                        btn.style.opacity = '1';
+                        btn.disabled = false;
+                    });
+            });
+        }
+    });
 
     // Smooth Scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
